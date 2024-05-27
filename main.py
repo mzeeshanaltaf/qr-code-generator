@@ -4,6 +4,7 @@ import streamlit as st
 from streamlit_lottie import st_lottie
 import json
 import wifi_qrcode_generator.generator
+from datetime import datetime
 
 
 # Function to load and display the lottie file
@@ -52,7 +53,8 @@ qr_data = ''
 button_enabled = False
 wifi_ssid = ''
 wifi_password = ''
-byte_contents = ''
+if "byte_contents" not in st.session_state:
+    st.session_state.byte_contents = None
 
 # Main page configuration
 st.title("QR Code Generator")
@@ -71,14 +73,16 @@ generate = st.button("Generate QR Code", type="primary", disabled=not button_ena
 
 if generate:
     if option == 'Text/URL':
-        byte_contents = text_qr_code_generator(qr_data)
+        st.session_state.byte_contents = text_qr_code_generator(qr_data)
     elif option == 'Wifi Password':
-        byte_contents = wifi_qr_code_generator(wifi_ssid, wifi_password)
+        st.session_state.byte_contents = wifi_qr_code_generator(wifi_ssid, wifi_password)
 
+if st.session_state.byte_contents is not None:
     st.subheader('Generated QR Code:')
     with st.container(border=True):
-        st.image(byte_contents)
+        st.image(st.session_state.byte_contents)
+        current_time = datetime.now().strftime('%H%M%S')
         st.download_button(label="Download QR Image", type="primary",
-                           data=byte_contents,
-                           file_name="qr_code.png",
+                           data=st.session_state.byte_contents,
+                           file_name=f"{current_time}_qr_code.png",
                            mime="image/png")
