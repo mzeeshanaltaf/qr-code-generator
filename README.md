@@ -1,5 +1,7 @@
-# qr-code-genertaor
-A streamlit app to generate QR code
+# QR Code Genertaor
+A streamlit app to generate QR code. It supports:
+- URL/Text based QR code generation
+- WI-FI password QR code generation 
 
 # Application Link
 https://qrcode-generator-st.streamlit.app/
@@ -18,5 +20,7 @@ You must have Python 3.9 or later installed. Earlier versions of python may not 
    `streamlit run main.py`
 
 # Screen Shots
-![image](https://github.com/mzeeshanaltaf/qr-code-generator/assets/154883001/20e2a943-7d11-4081-852b-78c1f2d7c23d)
+![image](https://github.com/mzeeshanaltaf/qr-code-generator/assets/154883001/7fc130c0-3693-46ed-b314-861cbe5a5a40)
+![image](https://github.com/mzeeshanaltaf/qr-code-generator/assets/154883001/4d7e1b53-1695-44b4-8dca-93f4a955717f)
+
 
